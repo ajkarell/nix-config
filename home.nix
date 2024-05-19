@@ -1,18 +1,16 @@
-{ config, pkgs, users, ... }:
+{ config, pkgs, users, unstable, ... }:
 {
   home-manager = {
+    useUserPackages = true;
+    useGlobalPkgs = true;
     users =
       {
-        "nixos" =
+        "aaro" =
           {
-            # Home Manager needs a bit of information about you and the paths it should
-            # manage.
-            home.username = "nixos";
-            home.homeDirectory = "/home/nixos";
-
             # The home.packages option allows you to install Nix packages into your
             # environment.
             home.packages = with pkgs; [
+              unstable.nh
             ];
 
             programs.git = {

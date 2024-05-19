@@ -9,31 +9,19 @@
 
 {
   imports = [
+    inputs.nixos-wsl.nixosModules.default
     inputs.home-manager.nixosModules.default
     inputs.vscode-server.nixosModules.default
   ];
 
   wsl = {
     enable = true;
-    defaultUser = "nixos";
+    defaultUser = "aaro";
   };
-
-  programs.fish.enable = true;
-  users.users.nixos.shell = pkgs.fish;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   services.vscode-server.enable = true;
 
-  programs.nh = {
-    enable = true;
-  };
-
-  environment.systemPackages = with pkgs; [
-    wget
-    git
-    nixpkgs-fmt
-  ];
+  networking.hostName = "julen";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
